@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header clear-filter" filter-color="red">
+  <div class="page-header clear-filter" filter-color="blue">
     <div
       class="page-header-image"
       style="background-image: url('img/chicago1024.jpg')"
@@ -7,7 +7,7 @@
     <div class="content">
       <div class="container">
         <div class="col-md-6 ml-auto mr-auto">
-          <card type="login" plain>
+          <card type="register" plain>
             <div slot="header" class="logo-container">
               <img v-lazy="'img/default_logo.webp'" alt="" />
             </div>
@@ -21,8 +21,29 @@
 
             <fg-input
               class="no-border form-control-lg"
+              addon-left-icon="now-ui-icons users_circle-08"
+              placeholder="Name..."
+            >
+            </fg-input>
+
+            <fg-input
+              class="no-border form-control-lg"
+              addon-left-icon="now-ui-icons text_caps-small"
+              placeholder="Email..."
+            >
+            </fg-input>
+
+            <fg-input
+              class="no-border form-control-lg"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="Password..."
+            >
+            </fg-input>
+
+            <fg-input
+              class="no-border form-control-lg"
+              addon-left-icon="now-ui-icons text_caps-small"
+              placeholder="Confirm Password..."
             >
             </fg-input>
 
@@ -31,13 +52,8 @@
                 <a
                   href="#pablo"
                   class="btn btn-primary btn-round btn-lg btn-block"
-                  >Sign in...</a
+                  >Register...</a
                 >
-              </div>
-              <div class="pull-left">
-                <h6>
-                  <a href="#register" class="link footer-link">Register</a>
-                </h6>
               </div>
             </template>
           </card>
@@ -51,8 +67,8 @@
 import { Card, Button, FormGroupInput } from "@/components";
 import MainFooter from "@/layout/MainFooter";
 export default {
-  name: "login-page",
-  bodyClass: "login-page",
+  name: "register-page",
+  bodyClass: "register-page",
   components: {
     Card,
     MainFooter,

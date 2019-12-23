@@ -4,6 +4,7 @@ import Starter from "@/pages/HomePage.vue";
 import LandingNavbar from "@/layout/LandingNavbar.vue";
 import MainNavbar from "@/layout/MainNavbar.vue";
 import Login from "@/pages/Login.vue";
+import Register from "@/pages/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,14 @@ const routes = [
     path: "/login",
     name: "login",
     components: { default: Login, header: MainNavbar },
+    props: {
+      header: { colorOnScroll: 400 }
+    }
+  },
+  {
+    path: "/register",
+    name: "register",
+    components: { default: Register, header: MainNavbar },
     props: {
       header: { colorOnScroll: 400 }
     }

@@ -120,7 +120,7 @@
     }
 
     &[filter-color="blue"]{
-        @include linear-gradient(rgba($black-color,.20), rgba(3, 9, 88, 0.8));
+        @include linear-gradient(rgba($black-color,.20), rgba(3, 9, 88, 1));
     }
 
 
