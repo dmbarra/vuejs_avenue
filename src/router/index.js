@@ -1,23 +1,24 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Starter from "@/pages/StarterPage.vue";
+import StarterNavbar from "@/layout/StarterNavbar.vue";
+import StarterFooter from "@/layout/StarterFooter.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    name: "index",
+    components: {
+      default: Starter,
+      header: StarterNavbar,
+      footer: StarterFooter
+    },
+    props: {
+      header: { colorOnScroll: 400 },
+      footer: { backgroundColor: "black" }
+    }
   }
 ];
 
