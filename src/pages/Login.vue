@@ -53,11 +53,11 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from '@/components';
-import MainFooter from '@/layout/MainFooter';
+import { Card, Button, FormGroupInput } from "@/components";
+import MainFooter from "@/layout/MainFooter";
 export default {
-  name: 'login-page',
-  bodyClass: 'login-page',
+  name: "login-page",
+  bodyClass: "login-page",
   components: {
     Card,
     MainFooter,
