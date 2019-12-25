@@ -21,6 +21,7 @@ import Modal from "./Modal.vue";
 import Parallax from "./Parallax.vue";
 import Slider from "./Slider.vue";
 
+import DataTable from "./DataTable.vue";
 import Pagination from "./Pagination.vue";
 
 export {
@@ -44,5 +45,6 @@ export {
   Modal,
   Parallax,
   Slider,
-  Button
+  Button,
+  DataTable
 };

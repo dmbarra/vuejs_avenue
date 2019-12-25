@@ -172,12 +172,11 @@
   </div>
 </template>
 <script>
-import { Card, Button, Modal, FormGroupInput } from '@/components';
-import { Popover, Tooltip, DatePicker } from 'element-ui';
+import { Button, Modal, FormGroupInput } from "@/components";
+import { Popover, Tooltip, DatePicker } from "element-ui";
 
 export default {
   components: {
-    Card,
     Modal,
     [Button.name]: Button,
     [Popover.name]: Popover,
@@ -192,7 +191,7 @@ export default {
         mini: false
       },
       pickers: {
-        datePicker: ''
+        datePicker: ""
       }
     };
   }

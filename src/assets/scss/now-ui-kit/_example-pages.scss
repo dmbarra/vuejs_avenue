@@ -212,7 +212,7 @@
 
 }
 
-.login-page, .register-page,
+.login-page, .register-page, .tasks-page
 .profile-page {
   .page-header:before {
     position: absolute;
@@ -302,6 +302,60 @@
         }
     }
 
+    .link{
+        font-size: 10px;
+        color: $white-color;
+        text-decoration: none;
+    }
+}
+
+.tasks-page{
+    
+    .card-tasks{
+        border-radius: $border-radius-large;
+        padding-bottom: $padding-base-horizontal;
+
+        .btn-wd{
+            min-width: 180px;
+        }
+
+        .input-group:last-child{
+            margin-bottom: 40px;
+        }
+
+        &.card-plain{
+            @include input-coloured-bg($opacity-5, $white-color, $white-color, $transparent-bg, $opacity-1, $opacity-2);
+
+            .input-group-text,
+            .form-group.no-border .input-group-text,
+            .input-group.no-border .input-group-text{
+                color: $opacity-8;
+            }
+        }
+    }
+    .task-without-color {
+        width: 100%
+    }
+
+    .tasks-thead {
+        color: $primary-color;
+    }
+
+    table {
+        background-color: $opacity-3;
+        border-collapse:separate;
+        border-radius: $btn-round-radius !important;
+        -moz-border-radius:6px;
+        border-width: $border-thin;
+        padding: $padding-btn-vertical  $padding-round-horizontal;
+        word-break: break-all;
+
+    }
+    
+    td:first-child, th:first-child {
+         border-left: none;
+    }
+      
     .link{
         font-size: 10px;
         color: $white-color;
