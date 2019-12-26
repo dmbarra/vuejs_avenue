@@ -9,36 +9,48 @@
       <div class="content">
         <div class="container">
           <h3 class="title">My tasks to be done</h3>
-          <card type="tasks" plain>
-            <DataTable
-              :header-fields="headerFields"
-              :sort-field="sortField"
-              :sort="sort"
-              :data="data || []"
-              :is-loading="isLoading"
-              :css="datatableCss"
-              not-found-msg="Items not found"
-              @onUpdate="dtUpdateSort"
-              track-by="todo"
+          <div class="row">
+            <div class="col-lg-11 tasks-max-width">
+              <fg-input placeholder="Create new task" v-model="task"></fg-input>
+            </div>
+            <n-button
+              name="add"
+              type="primary"
+              class="tasks-remove-margin"
+              @click.native="addTask()"
+              round
+              icon
             >
-              <n-button></n-button>
-              <n-button></n-button>
+              <i class="now-ui-icons ui-1_simple-add"></i>
+            </n-button>
+          </div>
+          <div class="tasks-pading-right">
+            <card type="tasks" plain>
+              <DataTable
+                :header-fields="headerFields"
+                :sort="sort"
+                :data="data || []"
+                :is-loading="isLoading"
+                not-found-msg="Items not found"
+                track-by="todo"
+              >
+                <n-button></n-button>
+                <n-button></n-button>
 
-              <Spinner slot="spinner" />
-            </DataTable>
-          </card>
+                <Spinner slot="spinner" />
+              </DataTable>
+            </card>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Parallax } from "@/components";
+import { Parallax, Button, FormGroupInput, DataTable } from "@/components";
 import Spinner from "vue-simple-spinner";
-import DataTable from "@/components/DataTable.vue";
-import orderBy from "lodash.orderby";
 
-const initialData = [
+const tasks = [
   {
     id: 1,
     todo: "Lucca",
@@ -69,7 +81,9 @@ export default {
   components: {
     Parallax,
     DataTable,
-    Spinner
+    Spinner,
+    [FormGroupInput.name]: FormGroupInput,
+    [Button.name]: Button
   },
   data: function() {
     return {
@@ -107,41 +121,14 @@ export default {
           actionElement: "delete"
         }
       ],
-      data: initialData.slice(0, 10),
+      data: tasks,
       isLoading: false,
       sort: "asc"
     };
   },
   methods: {
-    dtUpdateSort: function({ sortField, sort }) {
-      const sortedData = orderBy(initialData, [sortField], [sort]);
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      const end = this.currentPage * this.itemsPerPage;
-      this.data = sortedData.slice(start, end);
-      console.log("load data based on new sort", this.currentPage);
-    },
-
-    updateItemsPerPage: function(itemsPerPage) {
-      this.itemsPerPage = itemsPerPage;
-      if (itemsPerPage >= initialData.length) {
-        this.data = initialData;
-      } else {
-        this.data = initialData.slice(0, itemsPerPage);
-      }
-      console.log("load data with new items per page number", itemsPerPage);
-    },
-
-    changePage: function(currentPage) {
-      this.currentPage = currentPage;
-      const start = (currentPage - 1) * this.itemsPerPage;
-      const end = currentPage * this.itemsPerPage;
-      this.data = initialData.slice(start, end);
-      console.log("load data for the new page", currentPage);
-    },
-
-    updateCurrentPage: function(currentPage) {
-      this.currentPage = currentPage;
-      console.log("update current page without need to load data", currentPage);
+    addTask: function() {
+      console.log("update current page without need to load data", this.task);
     }
   }
 };

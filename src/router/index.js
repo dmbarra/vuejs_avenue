@@ -6,6 +6,7 @@ import MainNavbar from "@/layout/MainNavbar.vue";
 import Login from "@/pages/Login.vue";
 import Tasks from "@/pages/Tasks.vue";
 import SignupForm from "@/pages/SignupForm.vue";
+import BasicElementsSection from "@/pages/components/BasicElementsSection.vue";
 import JavascriptComponents from "@/pages/components/JavascriptComponents.vue";
 
 Vue.use(VueRouter);
@@ -52,6 +53,17 @@ const routes = [
   {
     path: "/temp",
     name: "temp",
+    components: {
+      default: BasicElementsSection,
+      header: LandingNavbar
+    },
+    props: {
+      header: { colorOnScroll: 400 }
+    }
+  },
+  {
+    path: "/temp2",
+    name: "temp2",
     components: {
       default: JavascriptComponents,
       header: LandingNavbar

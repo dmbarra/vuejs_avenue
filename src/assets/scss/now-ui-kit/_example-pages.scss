@@ -341,6 +341,18 @@
         color: $primary-color;
     }
 
+    .tasks-max-width {
+        max-width: 100% !important;
+    }
+
+    .tasks-remove-margin {
+        margin: 0px;
+    }
+
+    .tasks-pading-right {
+        padding-right: 38px;
+    }
+
     table {
         background-color: $opacity-3;
         border-collapse:separate;
@@ -349,7 +361,6 @@
         border-width: $border-thin;
         padding: $padding-btn-vertical  $padding-round-horizontal;
         word-break: break-all;
-
     }
     
     td:first-child, th:first-child {
