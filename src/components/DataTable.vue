@@ -46,17 +46,26 @@
             :style="getColumnWidth(key)"
           >
             <n-button
-              v-if="isFieldSpecial(key)"
+              v-if="isFieldSpecial(key) && !isaIcon(key)"
               :class="[getClickType(key), 'btn', 'btn-round', 'btn-sm']"
               :style="getColumnWidth(key)"
               @click="getActionElement(item)"
             >
               {{ key.label }}
             </n-button>
+            <button
+              v-if="isFieldSpecial(key) && isaIcon(key)"
+              :class="[getClickType(key), 'btn', 'btn-icon', 'btn-round']"
+              @click="getActionElement(item)"
+            >
+              <i :class="getIconsReference(key)"></i>
+            </button>
             <template v-else-if="key.format">{{
               key.format(item[key.name])
             }}</template>
-            <template v-else>{{ item[key.name] }}</template>
+            <template v-else>{{
+              limitNumbersOfCharacters(item[key.name])
+            }}</template>
           </td>
         </tr>
       </template>
@@ -109,6 +118,10 @@ export default {
       default: null
     },
     actionElement: {
+      type: String,
+      default: null
+    },
+    iconReference: {
       type: String,
       default: null
     },
@@ -215,6 +228,11 @@ export default {
 
     isFieldSpecial: field => field.typeElement !== "column",
 
+    isaIcon: field => field.typeElement === "icon",
+
+    getIconsReference: field =>
+      field !== null ? field.iconReference : "now-ui-icons ui-1_simple-add",
+
     getColumnWidth: function(item) {
       return { width: item.elementSize || this.defaultColumnWidth };
     },
@@ -224,7 +242,14 @@ export default {
 
     openDetails: props => alert("Click props:" + JSON.stringify(props)),
 
-    delete: props => alert("Click Delete:" + JSON.stringify(props))
+    delete: props => alert("Click Delete:" + JSON.stringify(props)),
+
+    limitNumbersOfCharacters: function(item) {
+      if (item != undefined && typeof item == "string") {
+        item = item.substring(0, 130) + "...";
+        return item;
+      }
+    }
   }
 };
 </script>

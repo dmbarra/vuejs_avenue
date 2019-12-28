@@ -27,8 +27,7 @@
           <div class="tasks-pading-right">
             <card type="tasks" plain>
               <DataTable
-                :header-fields="headerFields"
-                :sort="sort"
+                :header-fields="tasksFields"
                 :data="data || []"
                 :is-loading="isLoading"
                 not-found-msg="Items not found"
@@ -42,12 +41,54 @@
             </card>
           </div>
         </div>
+        <!-- Modal subtasks -->
+        <div>
+          <modal
+            :show.sync="modals.notice"
+            headerClasses="justify-content-center"
+            type="notice"
+          >
+            <h4 slot="header" class="title tasks-modal-title">Sub tasks</h4>
+            <template slot="body">
+              <div class="text-right tasks-modal-pading-right">
+                <n-button
+                  name="add"
+                  type="primary"
+                  @click.native="addTask()"
+                  round
+                  icon
+                >
+                  <i class="now-ui-icons ui-1_simple-add"></i>
+                </n-button>
+              </div>
+              <div class="tasks-modal-table-body">
+                <card type="subtasks" plain>
+                  <DataTable
+                    :header-fields="subTasksFields"
+                    :data="data || []"
+                    :is-loading="isLoading"
+                    not-found-msg="Items not found"
+                    track-by="subtaskdescription"
+                  >
+                    <Spinner slot="spinner" />
+                  </DataTable>
+                </card>
+              </div>
+            </template> </modal
+          >s
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Parallax, Button, FormGroupInput, DataTable } from "@/components";
+import {
+  Parallax,
+  Button,
+  FormGroupInput,
+  DataTable,
+  Modal
+} from "@/components";
 import Spinner from "vue-simple-spinner";
 
 const tasks = [
@@ -79,6 +120,7 @@ export default {
   name: "tasks",
   bodyClass: "tasks-page",
   components: {
+    Modal,
     Parallax,
     DataTable,
     Spinner,
@@ -87,7 +129,36 @@ export default {
   },
   data: function() {
     return {
-      headerFields: [
+      modals: {
+        notice: false
+      },
+      subTasksFields: [
+        {
+          name: "todo",
+          label: "Description",
+          elementSize: "80%",
+          typeElement: "column",
+          alignField: "text-left"
+        },
+        {
+          name: "opensubtask",
+          typeElement: "icon",
+          alignField: "text-right",
+          clickType: "primary",
+          actionElement: "edit",
+          iconReference: "now-ui-icons text_align-center"
+        },
+        {
+          name: "deletesubtask",
+          typeElement: "icon",
+          elementSize: "150px",
+          alignField: "text-right",
+          clickType: "warning",
+          actionElement: "delete",
+          iconReference: "now-ui-icons ui-1_simple-remove"
+        }
+      ],
+      tasksFields: [
         {
           name: "todo",
           label: "To do",
@@ -122,12 +193,12 @@ export default {
         }
       ],
       data: tasks,
-      isLoading: false,
-      sort: "asc"
+      isLoading: false
     };
   },
   methods: {
     addTask: function() {
+      this.modals.notice = true;
       console.log("update current page without need to load data", this.task);
     }
   }

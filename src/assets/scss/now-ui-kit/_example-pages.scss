@@ -341,6 +341,18 @@
         color: $primary-color;
     }
 
+    .tasks-modal-title {
+        color: $primary-color;
+    }
+
+    .tasks-modal-table-body {
+        color: rgba($primary-color,.6);
+    }
+
+    .tasks-modal-pading-right {
+        padding-right: 23px;
+    }
+
     .tasks-max-width {
         max-width: 100% !important;
     }
