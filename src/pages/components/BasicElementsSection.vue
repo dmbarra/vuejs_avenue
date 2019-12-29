@@ -142,19 +142,11 @@
   </div>
 </template>
 <script>
-import {
-  Button,
-  Checkbox,
-  Radio,
-  FormGroupInput,
-  Slider,
-  Switch
-} from '@/components';
+import { Button, Radio, FormGroupInput, Slider, Switch } from "@/components";
 
 export default {
   components: {
     [Button.name]: Button,
-    [Checkbox.name]: Checkbox,
     [Radio.name]: Radio,
     [FormGroupInput.name]: FormGroupInput,
     [Switch.name]: Switch,
@@ -164,8 +156,8 @@ export default {
   data() {
     return {
       radios: {
-        radioOn: '2',
-        radioOff: '2'
+        radioOn: "2",
+        radioOff: "2"
       },
       checkboxes: {
         unchecked: false,

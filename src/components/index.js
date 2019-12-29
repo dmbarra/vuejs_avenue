@@ -1,5 +1,4 @@
 import Alert from "./Alert";
-import Checkbox from "./Inputs/Checkbox.vue";
 import Radio from "./Inputs/Radio.vue";
 import FormGroupInput from "./Inputs/formGroupInput.vue";
 import Switch from "./Switch.vue";
@@ -28,7 +27,6 @@ export {
   Alert,
   Collapse,
   CollapseItem,
-  Checkbox,
   Switch,
   Badge,
   Progress,

@@ -11,10 +11,10 @@
   // Top section of the modal w/ title and dismiss
   .modal-header {
     border-bottom: none;
-    padding-top:    24px;
-    padding-right:  24px;
-    padding-bottom: 0;
-    padding-left:   24px;
+    padding-top:    18px;
+    padding-right:  18px;
+    padding-bottom: 18px;
+    padding-left:   18px;
 
     & button{
         position: absolute;
@@ -69,14 +69,29 @@
 
 .modal{
 
+    &.modal-notice {
+
+        .title {
+            color: $primary-color !important;
+        }
+
+        .tbody-td {
+            color: rgba($primary-color,.6) !important;
+        }
+    }
+
     &.modal-mini{
         p{
             text-align: center;
         }
 
         .modal-dialog{
-            max-width: 255px;
+            max-width: 350px;
             margin: 0 auto;
+        }
+
+        .title {
+           color: $white-color; 
         }
 
         .modal-profile{

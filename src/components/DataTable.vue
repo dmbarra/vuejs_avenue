@@ -49,14 +49,14 @@
               v-if="isFieldSpecial(key) && !isaIcon(key)"
               :class="[getClickType(key), 'btn', 'btn-round', 'btn-sm']"
               :style="getColumnWidth(key)"
-              @click="getActionElement(item)"
+              @click="whatIsTheFunction(key, item)"
             >
               {{ key.label }}
             </n-button>
             <button
               v-if="isFieldSpecial(key) && isaIcon(key)"
               :class="[getClickType(key), 'btn', 'btn-icon', 'btn-round']"
-              @click="getActionElement(item)"
+              @click="whatIsTheFunction(key, item)"
             >
               <i :class="getIconsReference(key)"></i>
             </button>
@@ -125,6 +125,24 @@ export default {
       type: String,
       default: null
     },
+    tableHeight: {
+      type: String,
+      default: null
+    },
+    defaultColumnWidth: {
+      type: String,
+      default: "150px"
+    },
+    onlyShowOrderedArrow: {
+      type: Boolean,
+      default: false
+    },
+    components: {
+      [Button.name]: Button
+    },
+    functionHit: {
+      type: Function
+    },
     css: {
       type: Object,
       default: () => ({
@@ -149,21 +167,6 @@ export default {
         checkboxHeader: "checkbox-header",
         checkbox: "checkbox"
       })
-    },
-    tableHeight: {
-      type: String,
-      default: null
-    },
-    defaultColumnWidth: {
-      type: String,
-      default: "150px"
-    },
-    onlyShowOrderedArrow: {
-      type: Boolean,
-      default: false
-    },
-    components: {
-      [Button.name]: Button
     }
   },
 
@@ -242,13 +245,16 @@ export default {
 
     openDetails: props => alert("Click props:" + JSON.stringify(props)),
 
-    delete: props => alert("Click Delete:" + JSON.stringify(props)),
-
     limitNumbersOfCharacters: function(item) {
       if (item != undefined && typeof item == "string") {
-        item = item.substring(0, 130) + "...";
+        item = item.substring(0, 70) + "...";
         return item;
       }
+    },
+
+    whatIsTheFunction: function(key, item) {
+      console.log(key.functionHit(item));
+      console.log(item);
     }
   }
 };
