@@ -98,7 +98,15 @@
               >
               </fg-input>
               <div class="datepicker-container">
-                <fg-input> </fg-input>
+                <fg-input>
+                  <date-time-picker
+                    v-model="datePicker"
+                    id="date"
+                    :editable="false"
+                    :clearable="true"
+                  >
+                  </date-time-picker>
+                </fg-input>
               </div>
             </div>
           </div>
@@ -123,6 +131,7 @@ import {
   DataTable,
   Modal
 } from "@/components";
+import DateTimePicker from "@/components/DateTimePicker";
 import Spinner from "vue-simple-spinner";
 
 const tasks = [
@@ -159,10 +168,12 @@ export default {
     DataTable,
     Spinner,
     [FormGroupInput.name]: FormGroupInput,
-    [Button.name]: Button
+    [Button.name]: Button,
+    DateTimePicker
   },
   data: function() {
     return {
+      datePicker: "",
       modals: {
         notice: false
       },
