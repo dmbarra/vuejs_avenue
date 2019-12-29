@@ -98,15 +98,7 @@
               >
               </fg-input>
               <div class="datepicker-container">
-                <fg-input>
-                  <el-date-picker
-                    v-model="datePicker"
-                    popper-class="date-picker-primary"
-                    type="date"
-                    placeholder="Select date"
-                  >
-                  </el-date-picker>
-                </fg-input>
+                <fg-input> </fg-input>
               </div>
             </div>
           </div>
@@ -131,7 +123,6 @@ import {
   DataTable,
   Modal
 } from "@/components";
-import { DatePicker } from "element-ui";
 import Spinner from "vue-simple-spinner";
 
 const tasks = [
@@ -168,8 +159,7 @@ export default {
     DataTable,
     Spinner,
     [FormGroupInput.name]: FormGroupInput,
-    [Button.name]: Button,
-    [DatePicker.name]: DatePicker
+    [Button.name]: Button
   },
   data: function() {
     return {
@@ -240,7 +230,6 @@ export default {
           functionHit: this.delete
         }
       ],
-      datePicker: "",
       data: tasks,
       props: null,
       listOfSubtasks: [],
