@@ -109,7 +109,8 @@ import {
   FormGroupInput,
   DataTable,
   Modal,
-  DropDown
+  DropDown,
+  Card
 } from "@/components";
 import { BFormTextarea } from "bootstrap-vue";
 import Spinner from "vue-simple-spinner";
@@ -146,6 +147,7 @@ export default {
     Parallax,
     DataTable,
     Spinner,
+    Card,
     [FormGroupInput.name]: FormGroupInput,
     [Button.name]: Button,
     DropDown,

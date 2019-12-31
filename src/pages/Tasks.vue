@@ -11,10 +11,10 @@
           <h3 class="title">Hey John, this is your todo list for today:</h3>
           <div class="row">
             <div class="col-lg-11 tasks-max-width">
-              <fg-input placeholder="Create new task" v-model="task"></fg-input>
+              <fg-input placeholder="Create new task" v-model="todo"></fg-input>
             </div>
             <n-button
-              name="add"
+              name="addTask"
               type="primary"
               class="tasks-remove-margin"
               @click.native="addTask()"
@@ -31,7 +31,6 @@
                 :data="data || []"
                 :is-loading="isLoading"
                 :css="datatableCss"
-                not-found-msg="Items not found"
                 track-by="todo"
               >
                 <Spinner slot="spinner" />
@@ -51,7 +50,7 @@
             <template slot="body">
               <div class="text-right tasks-modal-pading-right">
                 <n-button
-                  name="add"
+                  name="addSubTask"
                   type="primary"
                   @click.native="addSubTask()"
                   round
@@ -67,7 +66,6 @@
                     :data="listOfSubtasks || []"
                     :is-loading="isLoading"
                     :css="datatableCss"
-                    not-found-msg="Items not found"
                     track-by="subtaskdescription"
                   >
                     <Spinner slot="spinner" />
@@ -101,7 +99,6 @@
               <div class="datepicker-container">
                 <fg-input>
                   <date-time-picker
-                    v-model="datePicker"
                     id="date"
                     :editable="false"
                     :clearable="true"
@@ -112,10 +109,20 @@
             </div>
           </div>
           <template slot="footer">
-            <n-button type="neutral" link @click.native="closeEditSubtask()">
+            <n-button
+              type="neutral"
+              name="close"
+              link
+              @click.native="closeEditSubtask()"
+            >
               Close
             </n-button>
-            <n-button type="neutral" link @click.native="saveSubtask()">
+            <n-button
+              type="neutral"
+              name="saveSubtask"
+              link
+              @click.native="saveSubtask()"
+            >
               Save
             </n-button>
           </template>
@@ -126,6 +133,7 @@
 </template>
 <script>
 import {
+  Card,
   Parallax,
   Button,
   FormGroupInput,
@@ -164,6 +172,7 @@ export default {
   name: "tasks",
   bodyClass: "tasks-page",
   components: {
+    Card,
     Modal,
     Parallax,
     DataTable,
@@ -174,7 +183,6 @@ export default {
   },
   data: function() {
     return {
-      datePicker: "",
       modals: {
         notice: false
       },
@@ -246,6 +254,7 @@ export default {
       props: null,
       listOfSubtasks: [],
       isLoading: false,
+      todo: "",
       datatableCss: {
         table: "table-tasks tasks-without-color",
         thead: "thead tasks-thead",
@@ -267,7 +276,7 @@ export default {
   },
   methods: {
     addTask: function() {
-      console.log("update current page without need to load data", this.task);
+      console.log("update current page without need to load data", this.todo);
     },
 
     openSubtasksModal: function(task) {

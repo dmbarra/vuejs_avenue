@@ -47,6 +47,7 @@
           >
             <n-button
               v-if="isFieldSpecial(key) && !isaIcon(key)"
+              :name="getClickType(key)"
               :class="[getClickType(key), 'btn', 'btn-round', 'btn-sm']"
               :style="getColumnWidth(key)"
               @click="whatIsTheFunction(key, item)"
@@ -55,6 +56,7 @@
             </n-button>
             <button
               v-if="isFieldSpecial(key) && isaIcon(key)"
+              :name="getClickType(key)"
               :class="[getClickType(key), 'btn', 'btn-icon', 'btn-round']"
               @click="whatIsTheFunction(key, item)"
             >
@@ -72,7 +74,7 @@
       <template v-else>
         <tr :class="css.notFoundTr">
           <td :colspan="headers.length" :class="css.notFoundTd">
-            {{ notFoundMessage }}
+            "NOT FOUND"
           </td>
         </tr>
       </template>
@@ -84,6 +86,9 @@ import { Button } from "@/components";
 
 export default {
   name: "DataTable",
+  components: {
+    [Button.name]: Button
+  },
   props: {
     headerFields: {
       type: Array,
