@@ -5,6 +5,7 @@ import LandingNavbar from "@/layout/LandingNavbar.vue";
 import MainNavbar from "@/layout/MainNavbar.vue";
 import Login from "@/pages/Login.vue";
 import Tasks from "@/pages/Tasks.vue";
+import Bugs from "@/pages/Bugs.vue";
 import SignupForm from "@/pages/SignupForm.vue";
 import BasicElementsSection from "@/pages/components/BasicElementsSection.vue";
 import JavascriptComponents from "@/pages/components/JavascriptComponents.vue";
@@ -44,6 +45,17 @@ const routes = [
     name: "tasks",
     components: {
       default: Tasks,
+      header: LandingNavbar
+    },
+    props: {
+      header: { colorOnScroll: 400 }
+    }
+  },
+  {
+    path: "/bugs",
+    name: "bugs",
+    components: {
+      default: Bugs,
       header: LandingNavbar
     },
     props: {

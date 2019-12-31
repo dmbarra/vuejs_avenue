@@ -8,7 +8,7 @@
       </parallax>
       <div class="content">
         <div class="container">
-          <h3 class="title">My tasks to be done</h3>
+          <h3 class="title">Hey John, this is your todo list for today:</h3>
           <div class="row">
             <div class="col-lg-11 tasks-max-width">
               <fg-input placeholder="Create new task" v-model="task"></fg-input>
@@ -30,6 +30,7 @@
                 :header-fields="tasksFields"
                 :data="data || []"
                 :is-loading="isLoading"
+                :css="datatableCss"
                 not-found-msg="Items not found"
                 track-by="todo"
               >
@@ -65,6 +66,7 @@
                     :header-fields="subTasksFields"
                     :data="listOfSubtasks || []"
                     :is-loading="isLoading"
+                    :css="datatableCss"
                     not-found-msg="Items not found"
                     track-by="subtaskdescription"
                   >
@@ -75,7 +77,6 @@
             </template>
             <div slot="footer"></div>
           </modal>
-          s
         </div>
       </div>
       <div>
@@ -244,7 +245,24 @@ export default {
       data: tasks,
       props: null,
       listOfSubtasks: [],
-      isLoading: false
+      isLoading: false,
+      datatableCss: {
+        table: "table-tasks tasks-without-color",
+        thead: "thead tasks-thead",
+        theadTr: "thead-tr",
+        theadTh: "thead-th",
+        tbody: "tbody",
+        tbodyTr: "tbody-tr",
+        tbodyTrSpinner: "tbody-tr-spinner",
+        tbodyTd: "tbody-td",
+        tbodyTdSpinner: "tbody-td-spinner",
+        tfoot: "tfoot",
+        tfootTd: "tfoot-td",
+        tfootTr: "tfoot-tr",
+        footer: "footer",
+        thWrapper: "th-wrapper",
+        thWrapperCheckboxes: "th-wrapper-checkboxes"
+      }
     };
   },
   methods: {

@@ -333,7 +333,7 @@
             }
         }
     }
-    .task-without-color {
+    .tasks-without-color {
         width: 100%
     }
 
@@ -365,6 +365,94 @@
         border-width: $border-thin;
         padding: $padding-btn-vertical  $padding-round-horizontal;
         word-break: break-all;
+    }
+    
+    td:first-child, th:first-child {
+         border-left: none;
+    }
+      
+    .link{
+        font-size: 10px;
+        color: $white-color;
+        text-decoration: none;
+    }
+}
+
+.bugs-page{
+    
+    .btn-add-new {
+        padding-left: 15px;
+    }
+
+    .btn-add-new-icon {
+        padding-right: 10px;
+    }
+
+    .card-bugs{
+        border-radius: $border-radius-large;
+        padding-bottom: $padding-base-horizontal;
+
+        .btn-wd{
+            min-width: 180px;
+        }
+
+        .input-group:last-child{
+            margin-bottom: 40px;
+        }
+
+        &.card-plain{
+            @include input-coloured-bg($opacity-5, $white-color, $white-color, $transparent-bg, $opacity-1, $opacity-2);
+
+            .input-group-text,
+            .form-group.no-border .input-group-text,
+            .input-group.no-border .input-group-text{
+                color: $opacity-8;
+            }
+        }
+    }
+    .bugs-without-color {
+        width: 100%
+    }
+
+    .bugs-thead {
+        color: $primary-color;
+    }
+
+    .bugs-modal-pading-right {
+        padding-right: 23px;
+    }
+
+    .bugs-max-width {
+        max-width: 100% !important;
+    }
+
+    .bugs-remove-margin {
+        margin: 0px;
+    }
+
+    .bugs-pading-right {
+        padding-right: 38px;
+    }
+
+    table {
+        background-color: $opacity-3;
+        border-collapse:separate;
+        border-radius: $btn-round-radius !important;
+        -moz-border-radius:6px;
+        border-width: $border-thin;
+        padding: $padding-btn-vertical  $padding-round-horizontal;
+        word-break: break-all;
+    }
+
+    textarea {
+        border-collapse:separate;
+        border-radius: $btn-round-radius !important;
+        -moz-border-radius:6px;
+        border-width: $border-thin;
+        word-break: break-all;
+        padding: 5px;
+        padding-top: 5px;
+
     }
     
     td:first-child, th:first-child {

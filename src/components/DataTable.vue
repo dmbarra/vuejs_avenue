@@ -146,8 +146,8 @@ export default {
     css: {
       type: Object,
       default: () => ({
-        table: "table-tasks task-without-color",
-        thead: "thead tasks-thead",
+        table: "table",
+        thead: "thead",
         theadTr: "thead-tr",
         theadTh: "thead-th",
         tbody: "tbody",
