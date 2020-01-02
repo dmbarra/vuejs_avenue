@@ -6,6 +6,9 @@
     ></div>
     <div class="content">
       <div class="container">
+        <alert :visible="alert.danger" type="danger">
+          {{ alertMesssage }}</alert
+        >
         <div class="col-md-6 ml-auto mr-auto">
           <card type="login" plain>
             <div slot="header" class="logo-container">
@@ -14,25 +17,32 @@
 
             <fg-input
               class="no-border form-control-lg"
-              addon-left-icon="now-ui-icons users_circle-08"
+              addon-left-icon="now-ui-icons users_single-02"
               placeholder="Username..."
+              v-model="username"
             >
             </fg-input>
 
             <fg-input
               class="no-border form-control-lg"
-              addon-left-icon="now-ui-icons text_caps-small"
+              addon-left-icon="now-ui-icons objects_key-25"
               placeholder="Password..."
+              type="password"
+              v-model="password"
             >
             </fg-input>
 
             <template slot="raw-content">
               <div class="card-footer text-center">
-                <a
-                  href="#pablo"
-                  class="btn btn-primary btn-round btn-lg btn-block"
-                  >Sign in...</a
+                <n-button
+                  name="login"
+                  @click.native="loginAndGenerateToken()"
+                  type="primary"
+                  round
+                  wide
                 >
+                  Sign in...
+                </n-button>
               </div>
               <div class="pull-left">
                 <h6>
@@ -48,8 +58,9 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from "@/components";
+import { Card, Button, FormGroupInput, Alert } from "@/components";
 import MainFooter from "@/layout/MainFooter";
+import Token from "@/client/token";
 export default {
   name: "login-page",
   bodyClass: "login-page",
@@ -57,7 +68,30 @@ export default {
     Card,
     MainFooter,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
+    [FormGroupInput.name]: FormGroupInput,
+    Alert
+  },
+  data: function() {
+    return {
+      alert: {
+        danger: false
+      },
+      alertMesssage: "Something went wrong",
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginAndGenerateToken: function() {
+      let resp = Token.generateToken(this.username, this.password);
+      resp
+        .then(r => console.log(r), (this.alert.danger = false))
+        .catch(
+          err =>
+            (this.alertMesssage = Token.extractMessageError(err.response.data)),
+          (this.alert.danger = true)
+        );
+    }
   }
 };
 </script>
