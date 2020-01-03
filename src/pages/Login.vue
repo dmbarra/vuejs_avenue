@@ -61,6 +61,8 @@
 import { Card, Button, FormGroupInput, Alert } from "@/components";
 import MainFooter from "@/layout/MainFooter";
 import Token from "@/client/token";
+import { AUTH_REQUEST } from "@/client/actions/auth";
+
 export default {
   name: "login-page",
   bodyClass: "login-page",
@@ -83,9 +85,12 @@ export default {
   },
   methods: {
     loginAndGenerateToken: function() {
-      let resp = Token.generateToken(this.username, this.password);
-      resp
-        .then(r => console.log(r), (this.alert.danger = false))
+      const { username, password } = this;
+      this.$store
+        .dispatch(AUTH_REQUEST, { username, password })
+        .then(() => {
+          this.$router.push("/");
+        })
         .catch(
           err =>
             (this.alertMesssage = Token.extractMessageError(err.response.data)),

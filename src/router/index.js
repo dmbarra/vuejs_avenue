@@ -7,8 +7,25 @@ import Login from "@/pages/Login.vue";
 import Tasks from "@/pages/Tasks.vue";
 import Bugs from "@/pages/Bugs.vue";
 import SignupForm from "@/pages/SignupForm.vue";
+import Store from "@/store";
 
 Vue.use(VueRouter);
+
+// const ifNotAuthenticated = (to, from, next) => {
+//   if (!store.getters.isAuthenticated) {
+//     next();
+//     return;
+//   }
+//   next("/");
+// };
+
+const ifAuthenticated = (to, from, next) => {
+  if (Store.getters.isAuthenticated) {
+    next();
+    return;
+  }
+  next("/login");
+};
 
 const routes = [
   {
@@ -29,6 +46,7 @@ const routes = [
     props: {
       header: { colorOnScroll: 400 }
     }
+    // beforeEnter: ifNotAuthenticated
   },
   {
     path: "/register",
@@ -47,7 +65,8 @@ const routes = [
     },
     props: {
       header: { colorOnScroll: 400 }
-    }
+    },
+    beforeEnter: ifAuthenticated
   },
   {
     path: "/bugs",
@@ -58,7 +77,8 @@ const routes = [
     },
     props: {
       header: { colorOnScroll: 400 }
-    }
+    },
+    beforeEnter: ifAuthenticated
   }
 ];
 

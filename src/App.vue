@@ -8,5 +8,12 @@
   </div>
 </template>
 <script>
-export default {};
+import { USER_REQUEST } from "@/client/actions/user";
+export default {
+  created: function() {
+    if (this.$store.getters.isAuthenticated) {
+      this.$store.dispatch(USER_REQUEST);
+    }
+  }
+};
 </script>
