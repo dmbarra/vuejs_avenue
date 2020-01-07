@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Starter from "@/pages/HomePage.vue";
-import LandingNavbar from "@/layout/LandingNavbar.vue";
 import MainNavbar from "@/layout/MainNavbar.vue";
 import Login from "@/pages/Login.vue";
 import Tasks from "@/pages/Tasks.vue";
@@ -33,7 +32,7 @@ const routes = [
     name: "index",
     components: {
       default: Starter,
-      header: LandingNavbar
+      header: MainNavbar
     },
     props: {
       header: { colorOnScroll: 400 }
@@ -42,29 +41,19 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    components: { default: Login, header: MainNavbar },
-    props: {
-      header: { colorOnScroll: 400 }
-    }
-    // beforeEnter: ifNotAuthenticated
+    components: { default: Login, header: MainNavbar }
   },
   {
     path: "/register",
     name: "register",
-    components: { default: SignupForm, header: MainNavbar },
-    props: {
-      header: { colorOnScroll: 400 }
-    }
+    components: { default: SignupForm, header: MainNavbar }
   },
   {
     path: "/tasks",
     name: "tasks",
     components: {
       default: Tasks,
-      header: LandingNavbar
-    },
-    props: {
-      header: { colorOnScroll: 400 }
+      header: MainNavbar
     },
     beforeEnter: ifAuthenticated
   },
@@ -73,10 +62,7 @@ const routes = [
     name: "bugs",
     components: {
       default: Bugs,
-      header: LandingNavbar
-    },
-    props: {
-      header: { colorOnScroll: 400 }
+      header: MainNavbar
     },
     beforeEnter: ifAuthenticated
   }
