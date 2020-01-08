@@ -276,7 +276,9 @@ export default {
   },
   methods: {
     addTask: function() {
+      this.tasks.push(this.todo);
       console.log("update current page without need to load data", this.todo);
+      this.todo = "";
     },
 
     openSubtasksModal: function(task) {

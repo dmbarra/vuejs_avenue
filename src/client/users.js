@@ -23,7 +23,31 @@ export default {
       });
   },
 
-  extractMessageError: error => {
-    return error["error"];
+  createUser: user => {
+    return http
+      .post("/users/", {
+        username: user.username,
+        password: user.first_password,
+        email: user.email,
+        name: user.name
+      })
+      .then(function(response) {
+        return response;
+      })
+      .catch(function(error) {
+        throw error;
+      });
+  },
+
+  extractMessageError: errors => {
+    var array = [];
+    if (errors["username"]) {
+      array.push("Username " + errors["username"]);
+    }
+    if (errors["email"]) {
+      array.push(errors["email"]);
+    }
+
+    return array;
   }
 };

@@ -10,7 +10,6 @@ export const http = axios.create({
 });
 
 http.interceptors.request.use(function(config) {
-  console.log("config " + Store.getters.tokenAuthenticated);
   if (Store.getters.tokenAuthenticated) {
     const token = "Token " + Store.getters.tokenAuthenticated;
     config.headers.Authorization = token;

@@ -89,14 +89,12 @@ export default {
       this.$store
         .dispatch(AUTH_REQUEST, { username, password })
         .then(() => {
-          console.log("login " + this.$store.getters.tokenAuthenticated);
           this.$router.push("/");
         })
-        .catch(
-          err =>
-            (this.alertMesssage = Token.extractMessageError(err.response.data)),
-          (this.alert.danger = true)
-        );
+        .catch(err => {
+          this.alertMesssage = Token.extractMessageError(err.response.data);
+          this.alert.danger = true;
+        });
     }
   }
 };
